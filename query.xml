@@ -1,0 +1,3 @@
+        use airkerala;
+        insert into user_details values(1,'akhil','akhil@123');
+        insert into flight_details values(1,100,'tvm-kochi');
