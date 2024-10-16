@@ -18,7 +18,6 @@
     <modules>
         <module>entityutill</module>
         <module>loginApp</module>
-        <module>flighthandlingApp</module>
         <module>flightbookingApp</module>
         <module>bookingconfirmationApp</module>
         <module>apigatewayApp</module>
