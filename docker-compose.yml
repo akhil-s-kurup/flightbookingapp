@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  config-server:
+    image: config-server:latest
+    networks:
+      - airkerala
+
+  eureka-server:
+    image: eureka-server:latest
+    networks:
+      - airkerala
+
+  api-gateway:
+    image: api-gateway:latest
+    networks:
+      - airkerala
+
+  booking-confirmation:
+    image: booking-confirmation:latest
+    networks:
+      - airkerala
+
+  airkerala-booking-app:
+    image: airkerala-booking-app:latest
+    networks:
+      - airkerala
+
+  loginapp:
+    image: loginapp:latest
+    networks:
+      - airkerala
+
+networks:
+  airkerala:
+    external: true

@@ -1,3 +1,17 @@
         use airkerala;
         insert into user_details values(1,'akhil','akhil@123');
         insert into flight_details values(1,100,'tvm-kochi');
+
+
+
+        JSON for flight booking
+
+         POST: http://localhost:8080/bookingApp/bookFlight
+
+                {
+                "flightId": 1,
+                "userId": 1,
+                "noOfSeats": 2,
+                "bookingDate": "2024-11-02",
+                "bookingStatus": false
+                }
