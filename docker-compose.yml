@@ -43,7 +43,7 @@ services:
     ports:
       - "8086:8080"
 
-  mysql:
+  mysql-container:
     image: mysql:latest
     environment:
       MYSQL_ROOT_PASSWORD: akhil@123

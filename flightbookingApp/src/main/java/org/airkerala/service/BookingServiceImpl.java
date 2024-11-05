@@ -39,4 +39,14 @@ public class BookingServiceImpl implements BookingService {
         FlightBooking save = bookingDao.save(flightBooking);
         return save != null;
     }
+
+    @Override
+    public void addFlight(Flight flight) {
+        flightDao.save(flight);
+    }
+
+    @Override
+    public void addUser(User user) {
+        userDao.save(user);
+    }
 }

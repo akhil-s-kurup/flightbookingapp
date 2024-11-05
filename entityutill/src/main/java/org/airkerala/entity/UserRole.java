@@ -10,7 +10,8 @@ import java.util.Set;
 @Table(name = "user_role")
 @Getter
 @Setter
-public class UserRole {
+public class
+UserRole {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int roleId;
