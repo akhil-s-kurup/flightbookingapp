@@ -5,6 +5,6 @@ WORKDIR /bookingconfirmation
 # Copy the JAR file into the container
 COPY target/*.jar bookingconfirmation.jar
 # Expose the port your Spring Boot app runs on
-EXPOSE 8080
+EXPOSE 8086
 # Run the JAR file
 ENTRYPOINT ["java", "-jar", "bookingconfirmation.jar"]

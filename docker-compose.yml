@@ -27,7 +27,7 @@ services:
     networks:
       - airkerala
     ports:
-      - "8084:8080"
+      - "8086:8086"
 
   airkerala-booking-app:
     image: airkerala-booking-app:latest
@@ -41,7 +41,7 @@ services:
     networks:
       - airkerala
     ports:
-      - "8086:8080"
+      - "8087:8080"
 
   mysql-container:
     image: mysql:latest
