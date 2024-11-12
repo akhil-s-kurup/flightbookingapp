@@ -1,26 +1,27 @@
 version: '3.8'
 
 services:
-  config-server:
-    image: config-server:latest
-    networks:
-      - airkerala
-    ports:
-      - "8081:8080"
 
   eureka-server:
     image: eureka-server:latest
     networks:
       - airkerala
     ports:
-      - "8082:8080"
+      - "9091:9091"
+
+  config-server:
+    image: config-server:latest
+    networks:
+      - airkerala
+    ports:
+      - "8081:8081"
 
   api-gateway:
     image: api-gateway:latest
     networks:
       - airkerala
     ports:
-      - "8083:8080"
+      - "8083:8083"
 
   booking-confirmation:
     image: booking-confirmation:latest
@@ -41,7 +42,7 @@ services:
     networks:
       - airkerala
     ports:
-      - "8087:8080"
+      - "8087:8087"
 
   mysql-container:
     image: mysql:latest
