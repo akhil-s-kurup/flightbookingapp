@@ -3,7 +3,9 @@ package org.airkerala.service;
 import org.airkerala.dao.FlightBookingDao;
 import org.airkerala.entity.FlightBooking;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class BookingServiceImpl implements  FlightBookingService{
 
     @Autowired
