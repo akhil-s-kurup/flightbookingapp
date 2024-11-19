@@ -2,10 +2,12 @@ package org.airkerala;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.config.server.EnableConfigServer;
 
 @SpringBootApplication
-public class Main {
+@EnableConfigServer
+public class ConfigServerApp {
     public static void main(String[] args) {
-        SpringApplication.run(Main.class);
+        SpringApplication.run(ConfigServerApp.class);
     }
 }
