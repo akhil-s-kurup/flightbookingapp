@@ -2,48 +2,6 @@ version: '3.8'
 
 services:
 
-  eureka-server:
-    image: eureka-server:latest
-    networks:
-      - airkerala
-    ports:
-      - "9091:9091"
-
-  config-server:
-    image: config-server:latest
-    networks:
-      - airkerala
-    ports:
-      - "8089:8089"
-
-  api-gateway:
-    image: api-gateway:latest
-    networks:
-      - airkerala
-    ports:
-      - "8083:8083"
-
-  booking-confirmation:
-    image: booking-confirmation:latest
-    networks:
-      - airkerala
-    ports:
-      - "8086:8086"
-
-  airkerala-booking-app:
-    image: airkerala-booking-app:latest
-    networks:
-      - airkerala
-    ports:
-      - "8085:8085"
-
-  loginapp:
-    image: loginapp:latest
-    networks:
-      - airkerala
-    ports:
-      - "8087:8087"
-
   mysql-container:
     image: mysql:latest
     environment:
@@ -55,6 +13,84 @@ services:
       - airkerala
     volumes:
       - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 30s
+      retries: 5
+      start_period: 30s
+      timeout: 10s
+
+  eureka-server:
+    image: eureka-server:latest
+    networks:
+      - airkerala
+    ports:
+      - "9091:9091"
+    depends_on:
+      - mysql-container
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://eureka-server:9091/eureka"]
+      interval: 30s
+      retries: 5
+      start_period: 30s
+      timeout: 10s
+
+  api-gateway:
+    image: api-gateway:latest
+    networks:
+      - airkerala
+    ports:
+      - "8083:8083"
+    depends_on:
+      - eureka-server
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://api-gateway:8083"]
+      interval: 30s
+      retries: 5
+      start_period: 30s
+      timeout: 10s
+
+  config-server:
+    image: config-server:latest
+    networks:
+      - airkerala
+    ports:
+      - "8089:8089"
+    depends_on:
+      - api-gateway
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://config-server:8089"]
+      interval: 30s
+      retries: 5
+      start_period: 30s
+      timeout: 10s
+
+  booking-confirmation:
+    image: booking-confirmation:latest
+    networks:
+      - airkerala
+    ports:
+      - "8086:8086"
+    depends_on:
+      - config-server
+
+  airkerala-booking-app:
+    image: airkerala-booking-app:latest
+    networks:
+      - airkerala
+    ports:
+      - "8085:8085"
+    depends_on:
+      - config-server
+
+  loginapp:
+    image: loginapp:latest
+    networks:
+      - airkerala
+    ports:
+      - "8087:8087"
+    depends_on:
+      - config-server
 
 networks:
   airkerala:
