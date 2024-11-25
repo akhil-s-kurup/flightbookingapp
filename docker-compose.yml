@@ -58,21 +58,13 @@ services:
       - "8089:8089"
     depends_on:
       - api-gateway
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://config-server:8089"]
-      interval: 30s
-      retries: 5
-      start_period: 30s
-      timeout: 10s
 
   booking-confirmation:
     image: booking-confirmation:latest
     networks:
       - airkerala
     ports:
-      - "8086:8086"
-    depends_on:
-      - config-server
+      - "8086:8086" 
 
   airkerala-booking-app:
     image: airkerala-booking-app:latest
@@ -80,8 +72,7 @@ services:
       - airkerala
     ports:
       - "8085:8085"
-    depends_on:
-      - config-server
+
 
   loginapp:
     image: loginapp:latest
@@ -89,8 +80,7 @@ services:
       - airkerala
     ports:
       - "8087:8087"
-    depends_on:
-      - config-server
+ 
 
 networks:
   airkerala:
